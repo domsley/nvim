@@ -82,10 +82,6 @@ require('lazy').setup({
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
@@ -93,6 +89,60 @@ require('lazy').setup({
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
+  },
+
+  {
+    'williamboman/mason.nvim',
+    dependencies = {
+      'williamboman/mason-lspconfig.nvim',
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
+    },
+    config = function()
+      -- import mason
+      local mason = require 'mason'
+
+      -- import mason-lspconfig
+      local mason_lspconfig = require 'mason-lspconfig'
+
+      local mason_tool_installer = require 'mason-tool-installer'
+
+      -- enable mason and configure icons
+      mason.setup {
+        ui = {
+          icons = {
+            package_installed = '✓',
+            package_pending = '➜',
+            package_uninstalled = '✗',
+          },
+        },
+      }
+
+      mason_lspconfig.setup {
+        -- list of servers for mason to install
+        ensure_installed = {
+          'tsserver',
+          'html',
+          'cssls',
+          'tailwindcss',
+          'svelte',
+          'lua_ls',
+          'graphql',
+          'emmet_ls',
+          'prismals',
+        },
+        -- auto-install configured servers (with lspconfig)
+        automatic_installation = true, -- not the same as ensure_installed
+      }
+
+      mason_tool_installer.setup {
+        ensure_installed = {
+          'prettierd',
+          'prettier', -- prettier formatter
+          'stylua',   -- lua formatter
+          'eslint_d', -- js linter
+        },
+      }
+    end,
   },
 
   {
@@ -113,7 +163,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -189,11 +239,13 @@ require('lazy').setup({
     },
   },
 
+  { 'rose-pine/neovim' },
   {
-    'rose-pine/neovim',
+    'bluz71/vim-moonfly-colors',
+    name = 'moonfly',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'rose-pine'
+      vim.cmd [[colorscheme moonfly]]
     end,
   },
 
@@ -204,7 +256,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'rose-pine',
+        theme = 'moonfly',
         component_separators = '|',
         section_separators = '',
       },
@@ -221,7 +273,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',  opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -257,7 +309,7 @@ require('lazy').setup({
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
   require 'kickstart.plugins.autoformat',
-  require 'kickstart.plugins.debug',
+  -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
@@ -565,12 +617,13 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  clangd = {},
+  pyright = {},
+  phpactor = {},
+  tailwindcss = {},
+  rust_analyzer = {},
+  tsserver = {},
+  html = { filetypes = { 'html', 'twig', 'hbs' } },
 
   lua_ls = {
     Lua = {
@@ -653,6 +706,7 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
