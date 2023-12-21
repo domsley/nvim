@@ -91,5 +91,7 @@ return {
 		end,
 	},
 
+	{ 'xiyaowong/transparent.nvim' },
+
 	-- TODO: Add New Theme, Add Autoclosing html tags which will work in tsx files
 }

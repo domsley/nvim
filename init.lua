@@ -240,6 +240,7 @@ require('lazy').setup({
   },
 
   { 'rose-pine/neovim' },
+  { 'morhetz/gruvbox' },
   {
     'bluz71/vim-moonfly-colors',
     name = 'moonfly',
@@ -255,7 +256,7 @@ require('lazy').setup({
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
+        icons_enabled = true,
         theme = 'moonfly',
         component_separators = '|',
         section_separators = '',
