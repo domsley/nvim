@@ -339,9 +339,6 @@ vim.o.mouse = 'a'
 --  See `:help 'clipboard'`
 vim.o.clipboard = 'unnamedplus'
 
--- Set tabs
-vim.o.tabstop = 2
-
 -- Enable break indent
 vim.o.breakindent = true
 
