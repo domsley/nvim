@@ -91,7 +91,14 @@ return {
 		end,
 	},
 
+	-- Make background transparent
 	{ 'xiyaowong/transparent.nvim' },
 
-	-- TODO: Add New Theme, Add Autoclosing html tags which will work in tsx files
+	{
+		'windwp/nvim-ts-autotag',
+		ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+		config = function()
+			require('nvim-ts-autotag').setup()
+		end,
+	},
 }

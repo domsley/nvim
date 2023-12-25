@@ -300,6 +300,12 @@ require('lazy').setup({
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    ensure_installed = {
+      'lua',
+      'javascript',
+      'typescript',
+      'tsx',
+    },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
@@ -617,7 +623,6 @@ require('mason-lspconfig').setup()
 local servers = {
   clangd = {},
   pyright = {},
-  phpactor = {},
   tailwindcss = {},
   rust_analyzer = {},
   tsserver = {},
