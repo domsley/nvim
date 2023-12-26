@@ -3,6 +3,15 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+
+	-- Remaps
+	{
+		require('vim.keymap').set('i', '<C-c>', '<Esc>'),
+		require('vim.keymap').set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true }),
+		require('vim.keymap').set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true }),
+	},
+
+	-- Autopairs
 	{
 		'windwp/nvim-autopairs',
 		-- Optional dependency
@@ -99,6 +108,22 @@ return {
 		ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
 		config = function()
 			require('nvim-ts-autotag').setup()
+		end,
+	},
+
+	{
+		'romgrk/barbar.nvim',
+		config = function()
+			require('vim.keymap').set('n', '<leader>b1', '<cmd>BufferGoto 1<CR>', { desc = 'Tab 1' })
+			require('vim.keymap').set('n', '<leader>b2', '<cmd>BufferGoto 2<CR>', { desc = 'Tab 2' })
+			require('vim.keymap').set('n', '<leader>b3', '<cmd>BufferGoto 3<CR>', { desc = 'Tab 3' })
+			require('vim.keymap').set('n', '<leader>b4', '<cmd>BufferGoto 4<CR>', { desc = 'Tab 4' })
+			require('vim.keymap').set('n', '<leader>b5', '<cmd>BufferGoto 5<CR>', { desc = 'Tab 5' })
+			require('vim.keymap').set('n', '<leader>b6', '<cmd>BufferGoto 6<CR>', { desc = 'Tab 6' })
+			require('vim.keymap').set('n', '<leader>b7', '<cmd>BufferGoto 7<CR>', { desc = 'Tab 7' })
+			require('vim.keymap').set('n', '<leader>b8', '<cmd>BufferGoto 8<CR>', { desc = 'Tab 8' })
+			require('vim.keymap').set('n', '<leader>b9', '<cmd>BufferGoto 9<CR>', { desc = 'Tab 9' })
+			require('vim.keymap').set('n', '<leader>b0', '<cmd>BufferLast<CR>', { desc = 'Last Tab' })
 		end,
 	},
 }
