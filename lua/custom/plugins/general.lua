@@ -11,11 +11,6 @@ return {
       vim.cmd.colorscheme 'moonfly'
     end,
   },
-
-  -- Switch transparent background on and off
-  -- :TransparentToggle
-  { 'xiyaowong/transparent.nvim' },
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',

@@ -1,0 +1,22 @@
+return {
+  -- Contains all AI related nonsense.
+  -- Disable Copilot for now I will experiment with new AI in the future.
+  -- {
+  -- 	'zbirenbaum/copilot.lua',
+  -- 	cmd = 'Copilot',
+  -- 	event = 'InsertEnter',
+  -- 	config = function()
+  -- 		require('copilot').setup {
+  -- 			suggestion = { enabled = false },
+  -- 			panel = { enabled = false },
+  -- 		}
+  -- 	end,
+  -- },
+  -- {
+  -- 	'zbirenbaum/copilot-cmp',
+  -- 	after = { 'copilot.lua' },
+  -- 	config = function()
+  -- 		require('copilot_cmp').setup()
+  -- 	end,
+  -- },
+}
