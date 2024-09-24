@@ -1,6 +1,10 @@
 -- Neovide Specific Settings: https://neovide.dev
 if vim.g.neovide then
+  -- Font (Change)
+  vim.o.guifont = 'MonoLisa:h12'
+
   vim.g.neovide_cursor_antialiasing = true
+
   -- Reduce Trail size
   vim.g.neovide_cursor_trail_size = 0.1
   vim.g.neovide_cursor_animation_length = 0.1
@@ -8,6 +12,7 @@ if vim.g.neovide then
   -- Nice VFX effect when you switching between modes
   vim.g.neovide_cursor_vfx_mode = 'sonicboom'
 
+  --  NOTE: Scaling font at runtime.
   vim.g.neovide_scale_factor = 0.9
   local change_scale_factor = function(delta)
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
@@ -18,6 +23,15 @@ if vim.g.neovide then
   vim.keymap.set('n', '<C-->', function()
     change_scale_factor(1 / 1.25)
   end)
+
+  -- Helper function for transparency formatting
+  local alpha = function()
+    return string.format('%x', math.floor(255 * vim.g.transparency or 0.8))
+  end
+  -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+  vim.g.neovide_transparency = 0.92
+  vim.g.transparency = 0.92
+  vim.g.neovide_background_color = '#0f1117' .. alpha()
 end
 
 -- Set <space> as the leader key
@@ -36,9 +50,9 @@ vim.g.have_nerd_font = false
 
 -- Make line numbers default
 vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+
+-- Relative numbers, this is the way.
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -655,11 +669,11 @@ require('lazy').setup({
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        javascript = { "prettierd", "prettier", stop_after_first = true },
-        typescript = { "prettierd", "prettier", stop_after_first = true },
-        json = { "prettierd", "prettier", stop_after_first = true },
-        html = { "prettierd", "prettier", stop_after_first = true },
-        css = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'prettierd', 'prettier', stop_after_first = true },
+        html = { 'prettierd', 'prettier', stop_after_first = true },
+        css = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
@@ -775,7 +789,8 @@ require('lazy').setup({
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
             group_index = 0,
           },
-          { name = 'copilot' },
+          -- { name = 'copilot' },
+          { name = 'codeium' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
@@ -792,13 +807,13 @@ require('lazy').setup({
     'folke/tokyonight.nvim',
     -- priority = 1000, -- Make sure to load this before all the other start plugins.
     -- init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- vim.cmd.colorscheme 'tokyonight-night'
+    -- Load the colorscheme here.
+    -- Like many other themes, this one has different styles, and you could load
+    -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+    -- vim.cmd.colorscheme 'tokyonight-night'
 
-      -- You can configure highlights by doing something like:
-      -- vim.cmd.hi 'Comment gui=none'
+    -- You can configure highlights by doing something like:
+    -- vim.cmd.hi 'Comment gui=none'
     -- end,
   },
 
@@ -860,6 +875,7 @@ require('lazy').setup({
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
+
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --
