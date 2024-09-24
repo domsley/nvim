@@ -9,19 +9,20 @@ return {
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'moonfly'
+      vim.cmd.hi 'Comment gui=none'
     end,
   },
-  {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'moonfly',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
+  -- {
+  --   -- Set lualine as statusline
+  --   'nvim-lualine/lualine.nvim',
+  --   -- See `:help lualine.txt`
+  --   opts = {
+  --     options = {
+  --       icons_enabled = false,
+  --       theme = 'moonfly',
+  --       component_separators = '|',
+  --       section_separators = '',
+  --     },
+  --   },
+  -- },
 }
