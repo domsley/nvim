@@ -1,17 +1,17 @@
 return {
   -- Contains all AI related nonsense.
-  {
-    'Exafunction/codeium.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'hrsh7th/nvim-cmp',
-    },
-    config = function()
-      require('codeium').setup {}
-    end,
-  },
 
-  -- Disable Copilot for now I will experiment with new AI in the future.
+  -- Disable AI for now I will experiment with new AI stuff in the future.
+  -- {
+  --   'Exafunction/codeium.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'hrsh7th/nvim-cmp',
+  --   },
+  --   config = function()
+  --     require('codeium').setup {}
+  --   end,
+  -- },
   -- {
   --   'zbirenbaum/copilot.lua',
   --   cmd = 'Copilot',
