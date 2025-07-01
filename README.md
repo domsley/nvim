@@ -9,8 +9,6 @@ Check original [README](https://github.com/nvim-lua/kickstart.nvim/blob/master/R
 
 Below you can find OS specific install instructions for Neovim and dependencies.
 
-After installing all the dependencies continue with the [Install Kickstart](#Install-Kickstart) step.
-
 #### Windows Installation
 
 <details><summary>Windows with Microsoft C++ Build Tools and CMake</summary>
